@@ -66,7 +66,7 @@ if(!checkTable('data'))
   `value` smallint(6) NOT NULL default '0',
   `item` int(11) NOT NULL default '0',
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM");
+	) ENGINE=MyISAM");
 	$render .='<li>Data table was created</li>';
 }
 
@@ -79,7 +79,7 @@ if(!checkTable('settings'))
   `name` text NULL,
   `value` text NULL,
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM");
+	) ENGINE=MyISAM");
 	$render .='<li>Settings table was created</li>';
 }
 else
@@ -370,7 +370,7 @@ else
 	var3 INT NOT NULL,
 	var4 INT NOT NULL,
 	PRIMARY KEY  (id)
-	) TYPE=MyISAM");
+	) ENGINE=MyISAM");
 	$render .='<li>Blocks table was created</li>';
 
 	// install the values on a fresh install
@@ -417,7 +417,7 @@ else
 	`subtype2` int NOT NULL default '0',
 	`value9` text NULL,
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM");
+	) ENGINE=MyISAM");
 	$render .='<li>Variables table created.</li>';
 	itpdb_query("INSERT INTO `" . $tp_prefix . "variables` VALUES (1, 'Portal features', '', '-1,0', 'category', '', -2,'')");
 	itpdb_query("INSERT INTO `" . $tp_prefix . "variables` VALUES (2, 'General Articles', '', '-1,0', 'category', '', -2,'')");
@@ -519,7 +519,7 @@ else
 	`pub_start` INT(11) default '0' NOT NULL,
 	`pub_end` INT(11) default '0' NOT NULL,
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM AUTO_INCREMENT=2;");
+	) ENGINE=MyISAM AUTO_INCREMENT=2;");
 	$render .='<li>Articles table created</li>';
 }
 
@@ -556,7 +556,7 @@ else
 	`files` int(11) NOT NULL default '0',
 	`global_tag` text NULL,
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM");
+	) ENGINE=MyISAM");
 	$render .='<li>DL manager table created</li>';
 	itpdb_query("INSERT INTO " . $tp_prefix . "dlmanager (name,access,type) VALUES ( 'General', '-1,0,1','dlcat')");
 }
@@ -599,7 +599,7 @@ else
 	`frontsection` tinytext NULL,
 	`globaltags` tinytext NULL,
 	PRIMARY KEY  (`id`)
-	) TYPE=MyISAM;");
+	) ENGINE=MyISAM;");
 	$render .='<li>Modules table created</li>';
 }
 
@@ -613,7 +613,7 @@ if(!checkTable('dldata'))
 	`item` INT NOT NULL ,
 	`week` TINYINT NOT NULL ,
 	`year` SMALLINT NOT NULL
-	) TYPE = MYISAM"); 
+	) ENGINE = MyISAM"); 
 	$render .='<li>DL Manager Data table created</li>';
 }
 
@@ -680,7 +680,7 @@ else
 	`value8` text NOT NULL ,
 	`edit` tinyint NOT NULL ,
 	PRIMARY KEY ( `id` )
-	) TYPE = MYISAM");
+	) ENGINE = MyISAM");
 	$render .='<li>Shoutbox table is created.</li>';
 }
 
@@ -708,7 +708,7 @@ if(!checkTable('rates'))
 `rate_type` TINYTEXT NOT NULL ,
 `rate_id` INT NOT NULL ,
 	PRIMARY KEY ( `id` )
-) TYPE = MYISAM ");
+) ENGINE = MyISAM ");
 
 if(!checkTable('ratestats'))
 	itpdb_query("
@@ -719,7 +719,7 @@ if(!checkTable('ratestats'))
 `rate_id` INT NOT NULL ,
 `rates` INT NOT NULL ,
 	PRIMARY KEY ( `id` )
-) TYPE = MYISAM"); 
+) ENGINE = MyISAM"); 
 
 if(!checkTable('events'))
 	itpdb_query("
@@ -734,7 +734,7 @@ if(!checkTable('events'))
   `eventid` int(11) default NULL,
   `on` tinyint(4) default NULL,
 	PRIMARY KEY ( `id` )
-) TYPE = MYISAM"); 
+) ENGINE = MyISAM"); 
 
 // make sure TPShout is available
 $request=itpdb_query("SELECT id FROM " . $tp_prefix . "modules WHERE modulename='TPShout'");

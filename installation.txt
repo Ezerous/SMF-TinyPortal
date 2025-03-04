@@ -1,0 +1,2 @@
+A package for SMF v1.1.x forums that is a patched version of TinyPortal v1.0.0.
+It intends to extend the compatibility of the original package up to MySQL v5.7.

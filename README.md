@@ -1,8 +1,8 @@
-# SMF-TinyPortalPatched
+# SMF-TinyPortal
 
-[![GitHub release](https://img.shields.io/github/release/Ezerous/SMF-TinyPortalPatched.svg)](https://github.com/Ezerous/SMF-TinyPortalPatched/releases)
+[![GitHub release](https://img.shields.io/github/release/Ezerous/SMF-TinyPortal.svg)](https://github.com/Ezerous/SMF-TinyPortal/releases)
 [![SMF](https://img.shields.io/badge/SMF-1.1.x-blue.svg?style==flat)](https://simplemachines.org)
-![Last Commit](https://img.shields.io/github/last-commit/Ezerous/SMF-TinyPortalPatched/develop.svg?style=flat)
+![Last Commit](https://img.shields.io/github/last-commit/Ezerous/SMF-TinyPortal/develop.svg?style=flat)
 
 A package for [SMF](https://www.simplemachines.org/) v1.1.x forums that is a patched version of [TinyPortal](http://www.tinyportal.net) v1.0.0.
 

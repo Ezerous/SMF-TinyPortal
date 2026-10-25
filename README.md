@@ -8,6 +8,8 @@ A package for [SMF](https://www.simplemachines.org/) v1.1.x forums that is a pat
 
 This version intends to extend the compatibility of the original package up to MySQL v5.7.
 
+The original TinyPortal package version remains `1.107` for SMF package and upgrade compatibility. This fork uses [release-version.txt](release-version.txt) for its own semantic release versioning.
+
 ## License & Credits
 
 This project is licensed under the Mozilla Public License 2.0 (MPL 2.0), just like the original TinyPortal.  

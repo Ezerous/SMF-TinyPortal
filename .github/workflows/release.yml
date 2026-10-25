@@ -25,30 +25,37 @@ jobs:
         run: |
           set -euo pipefail
 
-          version="$(sed -n 's:.*<version>\([^<]*\)</version>.*:\1:p' package-info.xml | head -n 1)"
+          package_version="$(sed -n 's:.*<version>\([^<]*\)</version>.*:\1:p' package-info.xml | head -n 1)"
           smf1_version="$(awk '/<version>/{getline; gsub(/[[:space:]]/, ""); print; exit}' SMF1/tinyportal1090.mod)"
           smf2_version="$(sed -n 's:.*<version>\([^<]*\)</version>.*:\1:p' SMF2/install.xml | head -n 1)"
+          release_version="$(tr -d '[:space:]' < release-version.txt)"
 
-          if [[ -z "$version" || "$version" != "$smf1_version" || "$version" != "$smf2_version" ]]; then
+          if [[ -z "$package_version" || "$package_version" != "$smf1_version" || "$package_version" != "$smf2_version" ]]; then
             echo "package-info.xml, SMF1/tinyportal1090.mod, and SMF2/install.xml must contain the same version."
             exit 1
           fi
 
-          if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)+$ ]]; then
-            echo "Version '$version' is not a numeric dotted version."
+          if [[ ! "$package_version" =~ ^[0-9]+(\.[0-9]+)+$ ]]; then
+            echo "Package version '$package_version' is not a numeric dotted version."
+            exit 1
+          fi
+
+          if [[ ! "$release_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Release version '$release_version' is not semantic versioning."
             exit 1
           fi
 
           if [[ "${{ github.event_name }}" == "push" ]]; then
-            previous_version="$(git show HEAD^:package-info.xml 2>/dev/null | sed -n 's:.*<version>\([^<]*\)</version>.*:\1:p' | head -n 1 || true)"
-            if [[ "$version" == "$previous_version" ]]; then
+            previous_release_version="$(git show HEAD^:release-version.txt 2>/dev/null | tr -d '[:space:]' || true)"
+            if [[ "$release_version" == "$previous_release_version" ]]; then
               echo "changed=false" >> "$GITHUB_OUTPUT"
-              echo "Version was not bumped; skipping release."
+              echo "Release version was not bumped; skipping release."
               exit 0
             fi
           fi
 
-          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "package_version=$package_version" >> "$GITHUB_OUTPUT"
+          echo "release_version=$release_version" >> "$GITHUB_OUTPUT"
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Build package archive
@@ -56,7 +63,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          archive="SMF-TinyPortal_v${{ steps.version.outputs.version }}.zip"
+          archive="SMF-TinyPortal_v${{ steps.version.outputs.release_version }}.zip"
           staging="package-staging"
 
           rm -rf "$staging"
@@ -85,8 +92,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          version="${{ steps.version.outputs.version }}"
+          version="${{ steps.version.outputs.release_version }}"
           archive="SMF-TinyPortal_v${version}.zip"
           gh release create "v${version}" "$archive" \
             --repo "${{ github.repository }}" \
-            --title "TinyPortal ${version}"
+            --title "SMF-TinyPortal ${version}"

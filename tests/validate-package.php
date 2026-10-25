@@ -131,6 +131,11 @@ $root = dirname(dirname(__FILE__));
 $package_namespace = 'http://www.simplemachines.org/xml/package-info';
 $modification_namespace = 'http://www.simplemachines.org/xml/modification';
 
+$release_version_path = $root . '/release-version.txt';
+$release_version = is_file($release_version_path) ? trim(file_get_contents($release_version_path)) : '';
+if (!preg_match('/^[0-9]+\.[0-9]+\.[0-9]+$/', $release_version))
+	fail_test('release-version.txt must contain a semantic version such as 0.1.0');
+
 $package = load_xml($root . '/package-info.xml', 'package-info.xml');
 $package_versions = $package->getElementsByTagNameNS($package_namespace, 'version');
 if ($package_versions->length !== 1)

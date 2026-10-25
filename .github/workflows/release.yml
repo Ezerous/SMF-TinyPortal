@@ -96,4 +96,4 @@ jobs:
           archive="SMF-TinyPortal_v${version}.zip"
           gh release create "v${version}" "$archive" \
             --repo "${{ github.repository }}" \
-            --title "SMF-TinyPortal v${version}"
+            --title "Version ${version}"

@@ -319,9 +319,22 @@ foreach ($tables as $table => $col) {
                 array('table' => $table)
             );
         }
+        $existing_columns = $smcFunc['db_list_columns']('{db_prefix}' . $table);
+        if (!is_array($existing_columns))
+            $existing_columns = array();
         foreach ($col['columns'] as $column) {
-			if (!isset($column['old_name']) || !$smcFunc['db_change_column']($db_prefix . $table, $column['old_name'], $column))
-				$smcFunc['db_add_column']('{db_prefix}' . $table, $column);
+			$column_exists = tp_column_exists($existing_columns, $column['name']);
+			if (!$column_exists) {
+				if (isset($column['old_name']) && tp_column_exists($existing_columns, $column['old_name']))
+					$changed = $smcFunc['db_change_column']($db_prefix . $table, $column['old_name'], $column);
+				else
+					$changed = false;
+
+				if (!$changed)
+					$smcFunc['db_add_column']('{db_prefix}' . $table, $column);
+
+				$existing_columns[] = $column['name'];
+			}
             
             // If utf8 is set alter column to be utf8 if text or tinytext.
             if ($utf8 && in_array($column['type'], array('text', 'tinytext', 'longtext'))) {
@@ -817,6 +830,15 @@ function checkColumn($table, $col, $action)
 		$render .= '
 		<li>Changed ' . $col . ' in ' . $table . ' table</li>';		
 	}	
+}
+
+function tp_column_exists($columns, $name)
+{
+	foreach ($columns as $column)
+		if (strcasecmp($column, $name) === 0)
+			return true;
+
+	return false;
 }
 
 function updateDownLoads()

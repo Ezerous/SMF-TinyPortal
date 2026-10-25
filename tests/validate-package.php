@@ -180,6 +180,39 @@ foreach (array('modification', 'database', 'code') as $tag_name)
 	}
 }
 
+$language_removals = $package->getElementsByTagNameNS($package_namespace, 'remove-file');
+for ($i = 0; $i < $language_removals->length; $i++)
+{
+	$removal = $language_removals->item($i);
+	$name = trim($removal->getAttribute('name'));
+	if (strpos($name, '$languagedir/') !== 0)
+		continue;
+
+	$language_file = substr($name, strlen('$languagedir/'));
+	if (!is_file($root . '/common/Themes/default/languages/' . $language_file))
+		fail_test('language uninstall path does not match a packaged file: ' . $name);
+}
+
+$smf1_install = file_get_contents($root . '/SMF1/tp_install.php');
+if ($smf1_install === false)
+	fail_test('could not read SMF1/tp_install.php');
+if (strpos($smf1_install, 'pub_start`INT') !== false || strpos($smf1_install, 'pub_end` default 0 INT') !== false)
+	fail_test('SMF1 article migration contains malformed pub_start/pub_end ALTER syntax');
+
+foreach (array(
+	$root . '/SMF1/Sources/TPdlmanager.php',
+	$root . '/SMF2/Sources/TPdlmanager.php',
+	$root . '/SMF1/tp-files/tp-blockcodes/minicalendar.blockcode',
+	$root . '/SMF2/tp-files/tp-blockcodes/minicalendar.blockcode',
+) as $compatibility_path)
+{
+	$compatibility_code = file_get_contents($compatibility_path);
+	if ($compatibility_code === false)
+		fail_test('could not read compatibility file: ' . $compatibility_path);
+	if (strpos($compatibility_code, 'create_function(') !== false || preg_match('/\beach\s*\(/', $compatibility_code) || preg_match('/\bmktime\s*\(\s*\)/', $compatibility_code))
+		fail_test('removed PHP runtime API remains in ' . $compatibility_path);
+}
+
 $operations = validate_modification($smf2_modification, $modification_namespace, 'SMF2/install.xml');
 
 echo 'PASS: package XML, version consistency, required paths, PHP 5.3 compatibility, ' . $operations . ' reversible SMF2 operations' . PHP_EOL;

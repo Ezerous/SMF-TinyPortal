@@ -728,7 +728,7 @@ function TPmodules()
 		if($arts == '')
 			$arts = $txt['tp-no_title'];
 		// escape any php code
-		if($artu == -1 && !get_magic_quotes_gpc())
+		if($artu == -1 && (!function_exists('get_magic_quotes_gpc') || !get_magic_quotes_gpc()))
 			$artbb = addslashes($artbb);
 
 		$request = $smcFunc['db_insert']('INSERT',

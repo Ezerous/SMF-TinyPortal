@@ -42,18 +42,18 @@
 		<remove-file name="$themedir/TPwireless.template.php" />
 		<remove-file name="$themedir/TPShout.css" />
 		<remove-file name="$themedir/tp-style.css" />
-		<remove-file name="$languagedir/TPdlmanager.english" />
-		<remove-file name="$languagedir/TPdlmanager.english-uf8" />
-		<remove-file name="$languagedir/TPhelp.english" />
-		<remove-file name="$languagedir/TPhelp.english-uf8" />
-		<remove-file name="$languagedir/TPmodules.english" />
-		<remove-file name="$languagedir/TPmodules.english-uf8" />
-		<remove-file name="$languagedir/TPortal.english" />
-		<remove-file name="$languagedir/TPortal.english-uf8" />
-		<remove-file name="$languagedir/TPortalAdmin.english" />
-		<remove-file name="$languagedir/TPortalAdmin.english-uf8" />
-		<remove-file name="$languagedir/TPShout.english" />
-		<remove-file name="$languagedir/TPShout.english-uf8" />		
+		<remove-file name="$languagedir/TPdlmanager.english.php" />
+		<remove-file name="$languagedir/TPdlmanager.english-utf8.php" />
+		<remove-file name="$languagedir/TPhelp.english.php" />
+		<remove-file name="$languagedir/TPhelp.english-utf8.php" />
+		<remove-file name="$languagedir/TPmodules.english.php" />
+		<remove-file name="$languagedir/TPmodules.english-utf8.php" />
+		<remove-file name="$languagedir/TPortal.english.php" />
+		<remove-file name="$languagedir/TPortal.english-utf8.php" />
+		<remove-file name="$languagedir/TPortalAdmin.english.php" />
+		<remove-file name="$languagedir/TPortalAdmin.english-utf8.php" />
+		<remove-file name="$languagedir/TPShout.english.php" />
+		<remove-file name="$languagedir/TPShout.english-utf8.php" />
 	</uninstall>        
 	<install for="2.0 - 2.0.99">
 		<redirect url="">Installed!</redirect>
@@ -94,18 +94,18 @@
 		<remove-file name="$themedir/TPwireless.template.php" />
 		<remove-file name="$themedir/TPShout.css" />
 		<remove-file name="$themedir/tp-style.css" />
-		<remove-file name="$languagedir/TPdlmanager.english" />
-		<remove-file name="$languagedir/TPdlmanager.english-uf8" />
-		<remove-file name="$languagedir/TPhelp.english" />
-		<remove-file name="$languagedir/TPhelp.english-uf8" />
-		<remove-file name="$languagedir/TPmodules.english" />
-		<remove-file name="$languagedir/TPmodules.english-uf8" />
-		<remove-file name="$languagedir/TPortal.english" />
-		<remove-file name="$languagedir/TPortal.english-uf8" />
-		<remove-file name="$languagedir/TPortalAdmin.english" />
-		<remove-file name="$languagedir/TPortalAdmin.english-uf8" />
-		<remove-file name="$languagedir/TPShout.english" />
-		<remove-file name="$languagedir/TPShout.english-uf8" />
+		<remove-file name="$languagedir/TPdlmanager.english.php" />
+		<remove-file name="$languagedir/TPdlmanager.english-utf8.php" />
+		<remove-file name="$languagedir/TPhelp.english.php" />
+		<remove-file name="$languagedir/TPhelp.english-utf8.php" />
+		<remove-file name="$languagedir/TPmodules.english.php" />
+		<remove-file name="$languagedir/TPmodules.english-utf8.php" />
+		<remove-file name="$languagedir/TPortal.english.php" />
+		<remove-file name="$languagedir/TPortal.english-utf8.php" />
+		<remove-file name="$languagedir/TPortalAdmin.english.php" />
+		<remove-file name="$languagedir/TPortalAdmin.english-utf8.php" />
+		<remove-file name="$languagedir/TPShout.english.php" />
+		<remove-file name="$languagedir/TPShout.english-utf8.php" />
 		<code>SMF2/do_hooks.php</code>
     </uninstall>
     <upgrade for="2.0 - 2.0.99" from="1.098, 1.099, 1.100, 1.101, 1.102, 1.103, 1.104, 1.105, 1.106">

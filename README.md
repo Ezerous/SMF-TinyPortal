@@ -8,6 +8,8 @@ A package for [SMF](https://www.simplemachines.org/) v1.1.x forums that is a pat
 
 This version intends to extend the compatibility of the original package up to MySQL v5.7.
 
+Compatibility fixes also cover the SMF1 article migration SQL, package uninstall language paths, and removed PHP runtime APIs used by TinyPortal's own code. The SMF1 branch intentionally retains SMF1's legacy database layer, so this is not a standalone PHP 8 port of SMF 1.1.x.
+
 The original TinyPortal package version remains `1.107` for SMF package and upgrade compatibility. This fork uses [release-version.txt](release-version.txt) for its own semantic release versioning.
 
 ## License & Credits

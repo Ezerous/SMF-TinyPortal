@@ -456,7 +456,7 @@ if(checkTable('articles'))
 
 	checkColumn('articles','headers','ADD `headers` text NULL');
 	checkColumn('articles','type','ADD `type` tinytext NULL');
-	checkColumn('articles','pub_start','ADD `pub_start`INT default 0 NOT NULL');
+	checkColumn('articles','pub_start','ADD `pub_start` INT default 0 NOT NULL');
 	checkColumn('articles','pub_end','ADD `pub_end` INT default 0 NOT NULL');
  
 	// change to types
@@ -466,7 +466,7 @@ if(checkTable('articles'))
 
 	checkColumn('articles','global_tag','ADD `global_tag` text NULL');
 	checkColumn('articles','pub_start','ADD `pub_start` INT default 0 NOT NULL');
-	checkColumn('articles','pub_end','ADD `pub_end` default 0 INT NOT NULL');
+	checkColumn('articles','pub_end','ADD `pub_end` INT default 0 NOT NULL');
 			
 	// make sure featured is updated
 	$sjekk=itpdb_query("SELECT value FROM " . $tp_prefix . "settings WHERE name='featured_article'");
